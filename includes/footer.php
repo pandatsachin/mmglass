@@ -1,0 +1,4 @@
+</html>
+<?php
+$conn->close();
+?>
