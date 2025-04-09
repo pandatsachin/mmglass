@@ -340,7 +340,7 @@ if (isset($_POST['save'])) {
                 . "'" . $Width . "','" . $InsulatedUnit . "','" . $NewScreen . "','" . $ScreenRepair . "','" . $Moldings . "','" . $WindowGuards . "',"
                 . "'" . $Capping . "','" . $Locks . "','" . $Shoes . "','" . $TiltLatch . "','" . $Pivot . "','" . $Caps . "','" . $Notes . "','" . $RedTip_c . "','" . $UltraLift_c . "','" . $BlackTip_c . "','" . $BlockTackle_c . "','" . $additional_repairs . "','" . $glass_qty . "','1','" . $sash_value . "')";
 
-        $conn->query($query);
+//        $conn->query($query);
         $RegRepairs = $RedTip_c;
         $UltraLift = $UltraLift_c;
         $BlackTip = $BlackTip_c;
@@ -368,10 +368,10 @@ if (isset($_POST['save'])) {
 
         $Width = empty($Width) ? '<u>    </u>' : $Width;
         $Height = empty($Height) ? '<u>    </u>' : $Height;
-//        $glass_qty = empty($glass_qty) ? '<u>    </u>' : $glass_qty;
+        $glass_qty = empty($glass_qty) ? '<u>    </u>' : $glass_qty;
 
   $glass_qty_display_str = '';
-if ($glass_qty >= 2) {
+if (!empty($glass_qty) && $glass_qty > 1) {
     $glass_qty_display_str = '<strong>&nbsp;Qty:</strong> <u style="font-size: 12px;">' . $glass_qty . '</u>';
 }
         $size_str = '';
@@ -875,9 +875,9 @@ if ($glass_qty >= 2) {
 
         $Width = empty($Width) ? '<u>    </u>' : $Width;
         $Height = empty($Height) ? '<u>    </u>' : $Height;
-//        $glass_qty = empty($glass_qty) ? '<u>    </u>' : $glass_qty;
+        $glass_qty = empty($glass_qty) ? '<u>    </u>' : $glass_qty;
 $glass_qty_display_str = '';
-if ($glass_qty >= 2) {
+if (!empty($glass_qty) && $glass_qty > 1) {
     $glass_qty_display_str = '<strong>&nbsp;Qty:</strong> <u style="font-size: 12px;">' . $glass_qty . '</u>';
 }
         $size_str = '';
@@ -1042,7 +1042,7 @@ if ($glass_qty >= 2) {
         $pdftxt .= '<td>';
         $pdftxt .= $size_str3;
         $pdftxt .= '</td>';
-if ($glass_qty >= 2) {
+ if ($glass_qty >= 2) {
             if ($Room == 'Hallway' || $Room == 'Skylight' || $Room == 'Front Door' || $Room == 'Vest Door' || $Room == 'Sidelite') {
                  $pdftxt .= '<td>';
             $pdftxt .= $IU_str;
@@ -1531,10 +1531,10 @@ if ($glass_qty >= 2) {
 
 //    $pdf->writeHTML('<br><br><br><br><br><hr>', true, false, false, false, '');
     $pdf_name = $JobID . '-' . date('Y-m-d-H-i-s');
-    $pdfpath = "/home/bitnami/htdocs/mmglass/JobDetailsPDFs/$pdf_name.pdf";
-    $pdf->Output($pdfpath, 'F');
+    $pdfpath = "/home/bitnami/htdocs/mmglass/JobDetailsPDFstest/$pdf_name.pdf";
+    $pdf->Output($pdfpath, 'I');
 //    $pdf->Output($pdfpath);
-//    exit;
+    exit;
     //Send email
     $mail = new PHPMailer(true);
     //send email to tenant
@@ -1864,7 +1864,7 @@ if (isset($_POST['not_done'])) {
                 . "'" . $Width . "','" . $InsulatedUnit . "','" . $NewScreen . "','" . $ScreenRepair . "','" . $Moldings . "','" . $WindowGuards . "',"
                 . "'" . $Capping . "','" . $Locks . "','" . $Shoes . "','" . $TiltLatch . "','" . $Pivot . "','" . $Caps . "','" . $Notes . "','" . $RedTip_c . "','" . $UltraLift_c . "','" . $BlackTip_c . "','" . $BlockTackle_c . "','" . $additional_repairs . "','" . $glass_qty . "','1','" . $sash_value . "')";
 
-        $conn->query($query);
+//        $conn->query($query);
         $RegRepairs = $RedTip_c;
         $UltraLift = $UltraLift_c;
         $BlackTip = $BlackTip_c;
@@ -1892,10 +1892,10 @@ if (isset($_POST['not_done'])) {
 
         $Width = empty($Width) ? '<u>    </u>' : $Width;
         $Height = empty($Height) ? '<u>    </u>' : $Height;
-//        $glass_qty = empty($glass_qty) ? '<u>    </u>' : $glass_qty;
+        $glass_qty = empty($glass_qty) ? '<u>    </u>' : $glass_qty;
 
   $glass_qty_display_str = '';
-if ($glass_qty >= 2) {
+if (!empty($glass_qty) && $glass_qty > 1) {
     $glass_qty_display_str = '<strong>&nbsp;Qty:</strong> <u style="font-size: 12px;">' . $glass_qty . '</u>';
 }
         $size_str = '';
@@ -2399,9 +2399,9 @@ if ($glass_qty >= 2) {
 
         $Width = empty($Width) ? '<u>    </u>' : $Width;
         $Height = empty($Height) ? '<u>    </u>' : $Height;
-//        $glass_qty = empty($glass_qty) ? '<u>    </u>' : $glass_qty;
+        $glass_qty = empty($glass_qty) ? '<u>    </u>' : $glass_qty;
 $glass_qty_display_str = '';
-if ($glass_qty >= 2) {
+if (!empty($glass_qty) && $glass_qty > 1) {
     $glass_qty_display_str = '<strong>&nbsp;Qty:</strong> <u style="font-size: 12px;">' . $glass_qty . '</u>';
 }
         $size_str = '';
@@ -2566,7 +2566,7 @@ if ($glass_qty >= 2) {
         $pdftxt .= '<td>';
         $pdftxt .= $size_str3;
         $pdftxt .= '</td>';
-if ($glass_qty >= 2) {
+ if ($glass_qty >= 2) {
             if ($Room == 'Hallway' || $Room == 'Skylight' || $Room == 'Front Door' || $Room == 'Vest Door' || $Room == 'Sidelite') {
                  $pdftxt .= '<td>';
             $pdftxt .= $IU_str;
@@ -2798,14 +2798,14 @@ if ($glass_qty >= 2) {
 
         $pdftxt .= '<td style="width:75%; border-top: 1px solid black; ">';
         $pdftxt .= '<table style="width: 100%; margin: 0; padding: 0;">';
-        $pdftxt .= '<tr>';
-        $pdftxt .= '<td>';
+        $pdftxt .= '<tr style="width: 100%; margin: 0; padding: 0;">';
+        $pdftxt .= '<td style="width: 20%; margin: 0; padding: 0;">';
         $pdftxt .= '<strong>S Glass</strong> <u style="font-size: 12px;">    </u>';
         $pdftxt .= '</td>';
-        $pdftxt .= '<td>';
+        $pdftxt .= '<td style="width: 20%; margin: 0; padding: 0;">';
         $pdftxt .= '<strong>L Glass</strong> <u style="font-size: 12px;">    </u>';
         $pdftxt .= '</td>';
-        $pdftxt .= '<td>';
+        $pdftxt .= '<td style="width: 13%; margin: 0; padding: 0;">';
         $pdftxt .= '<strong><img src="images/check-box.png"> <strong> DP</strong></strong> <u style="font-size: 12px;"></u>';
         $pdftxt .= '</td>';
         $pdftxt .= '<td>';
@@ -3054,10 +3054,10 @@ if ($glass_qty >= 2) {
 
 //    $pdf->writeHTML('<br><br><br><br><br><hr>', true, false, false, false, '');
     $pdf_name = $JobID . '-' . date('Y-m-d-H-i-s');
-    $pdfpath = "/home/bitnami/htdocs/mmglass/JobDetailsPDFs/$pdf_name.pdf";
-    $pdf->Output($pdfpath, 'F');
+    $pdfpath = "/home/bitnami/htdocs/mmglass/JobDetailsPDFstest/$pdf_name.pdf";
+    $pdf->Output($pdfpath, 'I');
 //    $pdf->Output($pdfpath);
-//    exit;
+    exit;
     //Send email
     $mail = new PHPMailer(true);
     //send email to tenant

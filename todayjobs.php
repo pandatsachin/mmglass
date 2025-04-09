@@ -42,8 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 $today_date = date('Y-m-d');
-$qry = "select * from JobTable where JobDate='" . $today_date . "' and TechID=" . $_SESSION['User']['TechID'] . " order by jOrder, JobDate";
-//$qry = "select * from JobTable where TechID=36 order by jOrder, JobDate";
+//$qry = "select * from JobTable where JobDate='" . $today_date . "' and TechID= 37 order by jOrder, JobDate";
+$qry = "select * from JobTable where TechID=37 order by jOrder, JobDate";
 $result = $conn->query($qry);
 $tot_jobs = $result->num_rows;
 ?>

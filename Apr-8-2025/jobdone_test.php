@@ -330,7 +330,7 @@ if (isset($_POST['save'])) {
         $BlackTip_c = empty($BlackTip_c) ? 0 : $BlackTip_c;
         $BlockTackle_c = empty($BlockTackle_c) ? 0 : $BlockTackle_c;
         $sash_value = empty($sash_value) ? 0 : $sash_value;
-
+        $JobID = 11;
         $query = "insert into JobDetailsTable(JobID,Room,Floor,Top,Bottom,RegGlass,DoublePaneRegular,LargeGlass,DoublePaneLarge,"
                 . "RedTip,UltraLift,BlackTip,BlockTackle,LAMI,Plexi,RoughWire,RoughWireClear,PolyWire,PolyWireClear,Height,Width,InsulatedUnit,"
                 . "NewScreen,ScreenRepair,Moldings,WindowGuards,Capping,Locks,Shoes,TiltLatch,Pivot,Caps,Notes,RedTip_c,UltraLift_c,BlackTip_c,BlockTackle_c,additional,GTQty,Status,SashRepairs) values "
@@ -368,16 +368,12 @@ if (isset($_POST['save'])) {
 
         $Width = empty($Width) ? '<u>    </u>' : $Width;
         $Height = empty($Height) ? '<u>    </u>' : $Height;
-//        $glass_qty = empty($glass_qty) ? '<u>    </u>' : $glass_qty;
+        $glass_qty = empty($glass_qty) ? '<u>    </u>' : $glass_qty;
 
-  $glass_qty_display_str = '';
-if ($glass_qty >= 2) {
-    $glass_qty_display_str = '<strong>&nbsp;Qty:</strong> <u style="font-size: 12px;">' . $glass_qty . '</u>';
-}
         $size_str = '';
         if (!empty($Width) || !empty($Height) || !empty($glass_qty)) {
-            $size_str = ' Size  <u  style="font-size: 30px;">' . $Width . '</u> x <u   style="font-size: 30px;">' . $Height . '</u> ' . $glass_qty_display_str;
-            $size_str1 = ' Size  <u  style="font-size: 30px;">' . $Width . '</u> x <u  style="font-size: 30px;">' . $Height . '</u> ' . $glass_qty_display_str;
+            $size_str = ' Size  <u  style="font-size: 30px;">' . $Width . '</u> x <u   style="font-size: 30px;">' . $Height . '</u> ';
+            $size_str1 = ' Size  <u  style="font-size: 30px;">' . $Width . '</u> x <u  style="font-size: 30px;">' . $Height . '</u>';
         }
         if (empty($RegGlassStr)) {
             $size_str1 = '  Size  <u>   </u> x <u>   </u>';
@@ -421,47 +417,47 @@ if ($glass_qty >= 2) {
         }
 
 //        echo $glass_type_pdf;exit;
-       if (!empty($glass_type_pdf)) {
+        if (!empty($glass_type_pdf)) {
             if ($glass_type_pdf == 'Lami') {
-                $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/tick.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp; ';
+                $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/tick.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp;&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp;&nbsp; ';
             } elseif ($glass_type_pdf == 'Plexi') {
-                $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/tick.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp; ';
+                $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp;&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/tick.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp;&nbsp; ';
             } elseif ($glass_type_pdf == 'RW') {
                 if ($glass_type_pdf == 'RW' || $Clear_pdf_CG == 'CG') {
-                    $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/tick.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/tick.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp; ';
+                    $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp;&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/tick.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/tick.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp;&nbsp; ';
                 } else {
-                    $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/tick.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp; ';
+                    $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp;&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/tick.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp;&nbsp; ';
                 }
             } elseif ($glass_type_pdf == 'PW') {
                 if ($glass_type_pdf == 'PW' || $Clear_pdf_CG == 'CG') {
-                    $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/tick.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/tick.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp; ';
+                    $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp;&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/tick.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/tick.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp;&nbsp; ';
                 } else {
-                    $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/tick.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp; ';
+                    $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp;&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/tick.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp;&nbsp; ';
                 }
             }
 //            $glass_type_pdf = '<img src="images/tick.png"> ' . $glass_type_pdf;
         } else {
-            $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp; ';
+            $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp;&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp;&nbsp; ';
         }
 
-        $glass_type_pdf_hall = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp; ';
-        $glass_type_pdf_door = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp; ';
+        $glass_type_pdf_hall = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp;&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp;&nbsp; ';
+        $glass_type_pdf_door = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp;&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp;&nbsp; ';
 
         $size_str2 = '';
         if ($Room == 'Hallway' || $Room == 'Skylight' || $Room == 'Front Door' || $Room == 'Vest Door' || $Room == 'Sidelite') {
 
-           if (!empty($Width) && !empty($Height)) {
-                $size_str2 = ' <strong>Size</strong> <u  style="font-size: 12px;">' . $Width . '</u> <strong>x</strong> <u  style="font-size: 12px;">' . $Height . '</u> ' . $glass_qty_display_str . '<strong>&nbsp;&nbsp; Moldings</strong> <u  style="font-size: 12px;">' . $Moldings . '</u>';
+            if (!empty($Width) && !empty($Height)) {
+                $size_str2 = ' <strong>Size</strong> <u  style="font-size: 12px;">' . $Width . '</u> <strong>x</strong> <u  style="font-size: 12px;">' . $Height . '</u> <strong>&nbsp;&nbsp;&nbsp;&nbsp; Moldings</strong> <u  style="font-size: 12px;">' . $Moldings . '</u>';
             } elseif (!empty($Width)) {
-                $size_str2 = ' <strong>Size</strong> <u  style="font-size: 12px;">' . $Width . '</u> <strong>x</strong> <strong>&nbsp;&nbsp; Moldings</strong> <u  style="font-size: 12px;">' . $Moldings . '</u>';
+                $size_str2 = ' <strong>Size</strong> <u  style="font-size: 12px;">' . $Width . '</u> <strong>x</strong> <strong>&nbsp;&nbsp;&nbsp;&nbsp; Moldings</strong> <u  style="font-size: 12px;">' . $Moldings . '</u>';
             } elseif (!empty($Height)) {
-                $size_str2 = ' <strong>Size</strong> <strong>x</strong> <u  style="font-size: 12px;">' . $Height . '</u> <strong>&nbsp;&nbsp; Moldings</strong> <u  style="font-size: 12px;">' . $Moldings . '</u>';
+                $size_str2 = ' <strong>Size</strong> <strong>x</strong> <u  style="font-size: 12px;">' . $Height . '</u> <strong>&nbsp;&nbsp;&nbsp;&nbsp; Moldings</strong> <u  style="font-size: 12px;">' . $Moldings . '</u>';
             } else {
-                $size_str2 = ' <strong>Size</strong> <u  style="font-size: 12px;">  </u> <strong>x</strong> <u  style="font-size: 12px;">   </u> <strong>&nbsp;&nbsp; Moldings</strong> <u  style="font-size: 12px;">   </u>';
+                $size_str2 = ' <strong>Size</strong> <u  style="font-size: 12px;">  </u> <strong>x</strong> <u  style="font-size: 12px;">   </u> <strong>&nbsp;&nbsp;&nbsp;&nbsp; Moldings</strong> <u  style="font-size: 12px;">   </u>';
             }
         }
-        $size_str2_hall = ' <strong>Size</strong> <u  style="font-size: 12px;">  </u> <strong>x</strong> <u  style="font-size: 12px;">   </u> <strong>&nbsp;&nbsp; Moldings</strong> <u  style="font-size: 12px;">   </u>';
-        $size_str2_door = ' <strong>Size</strong> <u  style="font-size: 12px;">  </u> <strong>x</strong> <u  style="font-size: 12px;">   </u> <strong>&nbsp;&nbsp; Moldings</strong> <u  style="font-size: 12px;">   </u>';
+        $size_str2_hall = ' <strong>Size</strong> <u  style="font-size: 12px;">  </u> <strong>x</strong> <u  style="font-size: 12px;">   </u> <strong>&nbsp;&nbsp;&nbsp;&nbsp; Moldings</strong> <u  style="font-size: 12px;">   </u>';
+        $size_str2_door = ' <strong>Size</strong> <u  style="font-size: 12px;">  </u> <strong>x</strong> <u  style="font-size: 12px;">   </u> <strong>&nbsp;&nbsp;&nbsp;&nbsp; Moldings</strong> <u  style="font-size: 12px;">   </u>';
 
         $hfloor = '';
         if ($Room == 'Hallway' || $Room == 'Skylight') {
@@ -875,15 +871,12 @@ if ($glass_qty >= 2) {
 
         $Width = empty($Width) ? '<u>    </u>' : $Width;
         $Height = empty($Height) ? '<u>    </u>' : $Height;
-//        $glass_qty = empty($glass_qty) ? '<u>    </u>' : $glass_qty;
-$glass_qty_display_str = '';
-if ($glass_qty >= 2) {
-    $glass_qty_display_str = '<strong>&nbsp;Qty:</strong> <u style="font-size: 12px;">' . $glass_qty . '</u>';
-}
+        $glass_qty = empty($glass_qty) ? '<u>    </u>' : $glass_qty;
+
         $size_str = '';
         if (!empty($Width) || !empty($Height) || !empty($glass_qty)) {
-            $size_str = ' <strong>Size</strong>  <u>' . $Width . '</u> <strong>x</strong> <u style="font-size: 12px;">' . $Height . '</u> ' . $glass_qty_display_str;
-            $size_str1 = ' <strong>Size</strong>  <u  style="font-size: 12px;">' . $Width . '</u> x <u  style="font-size: 12px;">' . $Height . '</u> ' . $glass_qty_display_str;
+            $size_str = ' <strong>Size</strong>  <u>' . $Width . '</u> <strong>x</strong> <u style="font-size: 12px;">' . $Height . '</u> ';
+            $size_str1 = ' <strong>Size</strong>  <u  style="font-size: 12px;">' . $Width . '</u> x <u  style="font-size: 12px;">' . $Height . '</u> ';
         }
         if (empty($RegGlassStr)) {
             $size_str1 = '  <strong>Size</strong> <u style="font-size: 12px;">   </u> <strong>x</strong> <u style="font-size: 12px;">   </u> ';
@@ -1028,36 +1021,24 @@ if ($glass_qty >= 2) {
         $pdftxt .= '</td>';
         $pdftxt .= '<td style="width:75%; border-top: 1px solid black; ">';
         $pdftxt .= '<table style="width: 100%; margin: 0; padding: 0;">';
-        $pdftxt .= '<tr style="width: 100%; margin: 0; padding: 0;">';
-        $pdftxt .= '<td style="width: 20%; margin: 0; padding: 0;">';
+        $pdftxt .= '<tr>';
+        $pdftxt .= '<td>';
         $pdftxt .= $RegGlassStr;
         $pdftxt .= '</td>';
-        $pdftxt .= '<td style="width: 20%; margin: 0; padding: 0;">';
+        $pdftxt .= '<td>';
         $pdftxt .= $LargeGlassStr;
         $pdftxt .= '</td>';
-        $pdftxt .= '<td style="width: 13%; margin: 0; padding: 0;">';
+        $pdftxt .= '<td>';
         $pdftxt .= $DoublePaneLarge_and_Regular_pdf;
         $pdftxt .= '</td>';
 
         $pdftxt .= '<td>';
         $pdftxt .= $size_str3;
         $pdftxt .= '</td>';
-if ($glass_qty >= 2) {
-            if ($Room == 'Hallway' || $Room == 'Skylight' || $Room == 'Front Door' || $Room == 'Vest Door' || $Room == 'Sidelite') {
-                 $pdftxt .= '<td>';
-            $pdftxt .= $IU_str;
-            $pdftxt .= '</td>';
-            } else {
-                           $pdftxt .= '<td>';
-            $pdftxt .= $glass_qty_display_str . '&nbsp;&nbsp;&nbsp;&nbsp;' . $IU_str;
-            $pdftxt .= '</td>';
-            }
- 
-        } else {
-            $pdftxt .= '<td>';
-            $pdftxt .= $IU_str;
-            $pdftxt .= '</td>';
-        }
+
+        $pdftxt .= '<td>';
+        $pdftxt .= $IU_str;
+        $pdftxt .= '</td>';
 
         $pdftxt .= '</tr>';
         $pdftxt .= '<tr>';
@@ -1274,14 +1255,14 @@ if ($glass_qty >= 2) {
 
         $pdftxt .= '<td style="width:75%; border-top: 1px solid black; ">';
         $pdftxt .= '<table style="width: 100%; margin: 0; padding: 0;">';
-        $pdftxt .= '<tr style="width: 100%; margin: 0; padding: 0;">';
-        $pdftxt .= '<td style="width: 20%; margin: 0; padding: 0;">';
+        $pdftxt .= '<tr>';
+        $pdftxt .= '<td>';
         $pdftxt .= '<strong>S Glass</strong> <u style="font-size: 12px;">    </u>';
         $pdftxt .= '</td>';
-        $pdftxt .= '<td style="width: 20%; margin: 0; padding: 0;">';
+        $pdftxt .= '<td>';
         $pdftxt .= '<strong>L Glass</strong> <u style="font-size: 12px;">    </u>';
         $pdftxt .= '</td>';
-        $pdftxt .= '<td style="width: 13%; margin: 0; padding: 0;">';
+        $pdftxt .= '<td>';
         $pdftxt .= '<strong><img src="images/check-box.png"> <strong> DP</strong></strong> <u style="font-size: 12px;"></u>';
         $pdftxt .= '</td>';
         $pdftxt .= '<td>';
@@ -1534,9 +1515,10 @@ if ($glass_qty >= 2) {
     $pdfpath = "/home/bitnami/htdocs/mmglass/JobDetailsPDFs/$pdf_name.pdf";
     $pdf->Output($pdfpath, 'F');
 //    $pdf->Output($pdfpath);
-//    exit;
+    exit;
     //Send email
     $mail = new PHPMailer(true);
+//    $tennant_email ='pandatsachin38@gmail.com';
     //send email to tenant
     if (!empty($tennant_email)) {
         try {
@@ -1566,7 +1548,8 @@ if ($glass_qty >= 2) {
     }
     $mail = new PHPMailer(true);
     //Send email to admin  
-    $to_email = 'server@mazelrealty.com';
+    $to_email = 'pandatsachin38@gmail.com';
+//    $to_email = 'server@mazelrealty.com';
     $Subject = 'ImportWebJob ' . $JobID;
     $Body = $JobID . ' has been done';
     try {
@@ -1589,7 +1572,7 @@ if ($glass_qty >= 2) {
         $mail->Body = $Body;
         $mail->send();
         unset($_SESSION['JobID']);
-        header("Location:todayjobs.php");
+//        header("Location:todayjobs.php");
         $msg = '<div class="row"><div class="alert alert-success" role="alert">Job has been saved successfully!</div></div>';
     } catch (Exception $e) {
         $msg = '<div class="row"><div class="alert alert-danger" role="alert">Job has been saved successfully but email has not been sent!!!</div></div>';
@@ -1854,7 +1837,7 @@ if (isset($_POST['not_done'])) {
         $BlackTip_c = empty($BlackTip_c) ? 0 : $BlackTip_c;
         $BlockTackle_c = empty($BlockTackle_c) ? 0 : $BlockTackle_c;
         $sash_value = empty($sash_value) ? 0 : $sash_value;
-
+        $JobID = 33;
         $query = "insert into JobDetailsTable(JobID,Room,Floor,Top,Bottom,RegGlass,DoublePaneRegular,LargeGlass,DoublePaneLarge,"
                 . "RedTip,UltraLift,BlackTip,BlockTackle,LAMI,Plexi,RoughWire,RoughWireClear,PolyWire,PolyWireClear,Height,Width,InsulatedUnit,"
                 . "NewScreen,ScreenRepair,Moldings,WindowGuards,Capping,Locks,Shoes,TiltLatch,Pivot,Caps,Notes,RedTip_c,UltraLift_c,BlackTip_c,BlockTackle_c,additional,GTQty,Status,SashRepairs) values "
@@ -1892,16 +1875,12 @@ if (isset($_POST['not_done'])) {
 
         $Width = empty($Width) ? '<u>    </u>' : $Width;
         $Height = empty($Height) ? '<u>    </u>' : $Height;
-//        $glass_qty = empty($glass_qty) ? '<u>    </u>' : $glass_qty;
+        $glass_qty = empty($glass_qty) ? '<u>    </u>' : $glass_qty;
 
-  $glass_qty_display_str = '';
-if ($glass_qty >= 2) {
-    $glass_qty_display_str = '<strong>&nbsp;Qty:</strong> <u style="font-size: 12px;">' . $glass_qty . '</u>';
-}
         $size_str = '';
         if (!empty($Width) || !empty($Height) || !empty($glass_qty)) {
-            $size_str = ' Size  <u  style="font-size: 30px;">' . $Width . '</u> x <u   style="font-size: 30px;">' . $Height . '</u> ' . $glass_qty_display_str;
-            $size_str1 = ' Size  <u  style="font-size: 30px;">' . $Width . '</u> x <u  style="font-size: 30px;">' . $Height . '</u> ' . $glass_qty_display_str;
+            $size_str = ' Size  <u  style="font-size: 30px;">' . $Width . '</u> x <u   style="font-size: 30px;">' . $Height . '</u> ';
+            $size_str1 = ' Size  <u  style="font-size: 30px;">' . $Width . '</u> x <u  style="font-size: 30px;">' . $Height . '</u>';
         }
         if (empty($RegGlassStr)) {
             $size_str1 = '  Size  <u>   </u> x <u>   </u>';
@@ -1945,47 +1924,47 @@ if ($glass_qty >= 2) {
         }
 
 //        echo $glass_type_pdf;exit;
-       if (!empty($glass_type_pdf)) {
+        if (!empty($glass_type_pdf)) {
             if ($glass_type_pdf == 'Lami') {
-                $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/tick.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp; ';
+                $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/tick.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp;&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp;&nbsp; ';
             } elseif ($glass_type_pdf == 'Plexi') {
-                $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/tick.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp; ';
+                $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp;&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/tick.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp;&nbsp; ';
             } elseif ($glass_type_pdf == 'RW') {
                 if ($glass_type_pdf == 'RW' || $Clear_pdf_CG == 'CG') {
-                    $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/tick.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/tick.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp; ';
+                    $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp;&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/tick.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/tick.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp;&nbsp; ';
                 } else {
-                    $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/tick.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp; ';
+                    $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp;&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/tick.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp;&nbsp; ';
                 }
             } elseif ($glass_type_pdf == 'PW') {
                 if ($glass_type_pdf == 'PW' || $Clear_pdf_CG == 'CG') {
-                    $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/tick.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/tick.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp; ';
+                    $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp;&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/tick.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/tick.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp;&nbsp; ';
                 } else {
-                    $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/tick.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp; ';
+                    $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp;&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/tick.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp;&nbsp; ';
                 }
             }
 //            $glass_type_pdf = '<img src="images/tick.png"> ' . $glass_type_pdf;
         } else {
-            $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp; ';
+            $glass_type_pdf = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp;&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp;&nbsp; ';
         }
 
-        $glass_type_pdf_hall = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp; ';
-        $glass_type_pdf_door = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp; ';
+        $glass_type_pdf_hall = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp;&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp;&nbsp; ';
+        $glass_type_pdf_door = '<img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <span style="display: inline-block; margin: 0; width: 12px; height: 12px;"><strong>Lami</strong>&nbsp;&nbsp;&nbsp;&nbsp; </span> <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;" src="images/check-box.png"> <strong>Plexi</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>PW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>RW</strong>&nbsp;&nbsp;&nbsp;&nbsp; <img  style="display: inline-block; margin: 0; width: 12px; height: 12px;"src="images/check-box.png"> <strong>CG</strong>&nbsp;&nbsp;&nbsp;&nbsp; ';
 
         $size_str2 = '';
         if ($Room == 'Hallway' || $Room == 'Skylight' || $Room == 'Front Door' || $Room == 'Vest Door' || $Room == 'Sidelite') {
 
-           if (!empty($Width) && !empty($Height)) {
-                $size_str2 = ' <strong>Size</strong> <u  style="font-size: 12px;">' . $Width . '</u> <strong>x</strong> <u  style="font-size: 12px;">' . $Height . '</u> ' . $glass_qty_display_str . '<strong>&nbsp;&nbsp; Moldings</strong> <u  style="font-size: 12px;">' . $Moldings . '</u>';
+            if (!empty($Width) && !empty($Height)) {
+                $size_str2 = ' <strong>Size</strong> <u  style="font-size: 12px;">' . $Width . '</u> <strong>x</strong> <u  style="font-size: 12px;">' . $Height . '</u> <strong>&nbsp;&nbsp;&nbsp;&nbsp; Moldings</strong> <u  style="font-size: 12px;">' . $Moldings . '</u>';
             } elseif (!empty($Width)) {
-                $size_str2 = ' <strong>Size</strong> <u  style="font-size: 12px;">' . $Width . '</u> <strong>x</strong> <strong>&nbsp;&nbsp; Moldings</strong> <u  style="font-size: 12px;">' . $Moldings . '</u>';
+                $size_str2 = ' <strong>Size</strong> <u  style="font-size: 12px;">' . $Width . '</u> <strong>x</strong> <strong>&nbsp;&nbsp;&nbsp;&nbsp; Moldings</strong> <u  style="font-size: 12px;">' . $Moldings . '</u>';
             } elseif (!empty($Height)) {
-                $size_str2 = ' <strong>Size</strong> <strong>x</strong> <u  style="font-size: 12px;">' . $Height . '</u> <strong>&nbsp;&nbsp; Moldings</strong> <u  style="font-size: 12px;">' . $Moldings . '</u>';
+                $size_str2 = ' <strong>Size</strong> <strong>x</strong> <u  style="font-size: 12px;">' . $Height . '</u> <strong>&nbsp;&nbsp;&nbsp;&nbsp; Moldings</strong> <u  style="font-size: 12px;">' . $Moldings . '</u>';
             } else {
-                $size_str2 = ' <strong>Size</strong> <u  style="font-size: 12px;">  </u> <strong>x</strong> <u  style="font-size: 12px;">   </u> <strong>&nbsp;&nbsp; Moldings</strong> <u  style="font-size: 12px;">   </u>';
+                $size_str2 = ' <strong>Size</strong> <u  style="font-size: 12px;">  </u> <strong>x</strong> <u  style="font-size: 12px;">   </u> <strong>&nbsp;&nbsp;&nbsp;&nbsp; Moldings</strong> <u  style="font-size: 12px;">   </u>';
             }
         }
-        $size_str2_hall = ' <strong>Size</strong> <u  style="font-size: 12px;">  </u> <strong>x</strong> <u  style="font-size: 12px;">   </u> <strong>&nbsp;&nbsp; Moldings</strong> <u  style="font-size: 12px;">   </u>';
-        $size_str2_door = ' <strong>Size</strong> <u  style="font-size: 12px;">  </u> <strong>x</strong> <u  style="font-size: 12px;">   </u> <strong>&nbsp;&nbsp; Moldings</strong> <u  style="font-size: 12px;">   </u>';
+        $size_str2_hall = ' <strong>Size</strong> <u  style="font-size: 12px;">  </u> <strong>x</strong> <u  style="font-size: 12px;">   </u> <strong>&nbsp;&nbsp;&nbsp;&nbsp; Moldings</strong> <u  style="font-size: 12px;">   </u>';
+        $size_str2_door = ' <strong>Size</strong> <u  style="font-size: 12px;">  </u> <strong>x</strong> <u  style="font-size: 12px;">   </u> <strong>&nbsp;&nbsp;&nbsp;&nbsp; Moldings</strong> <u  style="font-size: 12px;">   </u>';
 
         $hfloor = '';
         if ($Room == 'Hallway' || $Room == 'Skylight') {
@@ -2399,15 +2378,12 @@ if ($glass_qty >= 2) {
 
         $Width = empty($Width) ? '<u>    </u>' : $Width;
         $Height = empty($Height) ? '<u>    </u>' : $Height;
-//        $glass_qty = empty($glass_qty) ? '<u>    </u>' : $glass_qty;
-$glass_qty_display_str = '';
-if ($glass_qty >= 2) {
-    $glass_qty_display_str = '<strong>&nbsp;Qty:</strong> <u style="font-size: 12px;">' . $glass_qty . '</u>';
-}
+        $glass_qty = empty($glass_qty) ? '<u>    </u>' : $glass_qty;
+
         $size_str = '';
         if (!empty($Width) || !empty($Height) || !empty($glass_qty)) {
-            $size_str = ' <strong>Size</strong>  <u>' . $Width . '</u> <strong>x</strong> <u style="font-size: 12px;">' . $Height . '</u> ' . $glass_qty_display_str;
-            $size_str1 = ' <strong>Size</strong>  <u  style="font-size: 12px;">' . $Width . '</u> x <u  style="font-size: 12px;">' . $Height . '</u> ' . $glass_qty_display_str;
+            $size_str = ' <strong>Size</strong>  <u>' . $Width . '</u> <strong>x</strong> <u style="font-size: 12px;">' . $Height . '</u> ';
+            $size_str1 = ' <strong>Size</strong>  <u  style="font-size: 12px;">' . $Width . '</u> x <u  style="font-size: 12px;">' . $Height . '</u> ';
         }
         if (empty($RegGlassStr)) {
             $size_str1 = '  <strong>Size</strong> <u style="font-size: 12px;">   </u> <strong>x</strong> <u style="font-size: 12px;">   </u> ';
@@ -2552,36 +2528,24 @@ if ($glass_qty >= 2) {
         $pdftxt .= '</td>';
         $pdftxt .= '<td style="width:75%; border-top: 1px solid black; ">';
         $pdftxt .= '<table style="width: 100%; margin: 0; padding: 0;">';
-        $pdftxt .= '<tr style="width: 100%; margin: 0; padding: 0;">';
-        $pdftxt .= '<td style="width: 20%; margin: 0; padding: 0;">';
+        $pdftxt .= '<tr>';
+        $pdftxt .= '<td>';
         $pdftxt .= $RegGlassStr;
         $pdftxt .= '</td>';
-        $pdftxt .= '<td style="width: 20%; margin: 0; padding: 0;">';
+        $pdftxt .= '<td>';
         $pdftxt .= $LargeGlassStr;
         $pdftxt .= '</td>';
-        $pdftxt .= '<td style="width: 13%; margin: 0; padding: 0;">';
+        $pdftxt .= '<td>';
         $pdftxt .= $DoublePaneLarge_and_Regular_pdf;
         $pdftxt .= '</td>';
 
         $pdftxt .= '<td>';
         $pdftxt .= $size_str3;
         $pdftxt .= '</td>';
-if ($glass_qty >= 2) {
-            if ($Room == 'Hallway' || $Room == 'Skylight' || $Room == 'Front Door' || $Room == 'Vest Door' || $Room == 'Sidelite') {
-                 $pdftxt .= '<td>';
-            $pdftxt .= $IU_str;
-            $pdftxt .= '</td>';
-            } else {
-                           $pdftxt .= '<td>';
-            $pdftxt .= $glass_qty_display_str . '&nbsp;&nbsp;&nbsp;&nbsp;' . $IU_str;
-            $pdftxt .= '</td>';
-            }
- 
-        } else {
-            $pdftxt .= '<td>';
-            $pdftxt .= $IU_str;
-            $pdftxt .= '</td>';
-        }
+
+        $pdftxt .= '<td>';
+        $pdftxt .= $IU_str;
+        $pdftxt .= '</td>';
 
         $pdftxt .= '</tr>';
         $pdftxt .= '<tr>';
@@ -3057,7 +3021,7 @@ if ($glass_qty >= 2) {
     $pdfpath = "/home/bitnami/htdocs/mmglass/JobDetailsPDFs/$pdf_name.pdf";
     $pdf->Output($pdfpath, 'F');
 //    $pdf->Output($pdfpath);
-//    exit;
+    exit;
     //Send email
     $mail = new PHPMailer(true);
     //send email to tenant
@@ -3502,7 +3466,7 @@ include("includes/header.php");
                     <textarea id="main_techsign" name="main_techsign" style="display: none" required></textarea>
                 </div>
             </div>
- <div class="row mt-3">
+     <div class="row mt-3">
     <!-- Button for "Done" -->
     <div class="col-2 col-sm-2 col-md-2 d-flex justify-content-center mb-3">
         <button 
@@ -3524,6 +3488,7 @@ include("includes/header.php");
         </button>
     </div>
 </div>
+
         </form>
     </main>
 </body>
@@ -4150,7 +4115,7 @@ include("includes/footer.php");
         } else {
             $(this).hide();
         }
-   if (alert_msg && alert_msg.trim() === "") {
+        if (alert_msg && alert_msg.trim() === "") {
             $('#btndone, #not_done').prop('disabled', true);  // Disable both buttons if alert_msg is empty
         } else {
             $('#btndone, #not_done').prop('disabled', false);  // Enable both buttons

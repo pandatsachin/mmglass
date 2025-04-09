@@ -20,7 +20,7 @@ $msg = "";
 
 //PDF class
 class MYPDF extends TCPDF {
- 
+
     //Page header
     public function Header() {
         // Logo
@@ -314,15 +314,12 @@ if (isset($_POST['generate_pdf'])) {
 
             $Width = empty($Width) ? '<u>    </u>' : $Width;
             $Height = empty($Height) ? '<u>    </u>' : $Height;
-//            $glass_qty = empty($glass_qty) ? '<u>    </u>' : $glass_qty;
-  $glass_qty_display_str = '';
-if ($glass_qty >= 2) {
-    $glass_qty_display_str = '<strong>&nbsp;Qty:</strong> <u style="font-size: 12px;">' . $glass_qty . '</u>';
-}
+            $glass_qty = empty($glass_qty) ? '<u>    </u>' : $glass_qty;
+
             $size_str = '';
             if (!empty($Width) || !empty($Height) || !empty($glass_qty)) {
-                $size_str = ' Size  <u  style="font-size: 30px;">' . $Width . '</u> x <u   style="font-size: 30px;">' . $Height . '</u> ' . $glass_qty_display_str;
-                $size_str1 = ' Size  <u  style="font-size: 30px;">' . $Width . '</u> x <u  style="font-size: 30px;">' . $Height . '</u>' . $glass_qty_display_str;
+                $size_str = ' Size  <u  style="font-size: 30px;">' . $Width . '</u> x <u   style="font-size: 30px;">' . $Height . '</u> ';
+                $size_str1 = ' Size  <u  style="font-size: 30px;">' . $Width . '</u> x <u  style="font-size: 30px;">' . $Height . '</u>';
             }
             if (empty($RegGlassStr)) {
                 $size_str1 = '  Size  <u>   </u> x <u>   </u>';
@@ -349,7 +346,7 @@ if ($glass_qty >= 2) {
                     $Room_pdf = '&nbsp;<img src="images/tick.png"> <strong>' . $Room_pdf . '</strong><br>&nbsp;<img src="images/check-box.png"> <strong>Vest Door</strong><br>&nbsp;<img src="images/check-box.png"> <strong>Sidelite</strong>';
                 } elseif ($Room == 'Vest Door') {
                     $Room_pdf = '&nbsp;<img src="images/check-box.png"> <strong>Front Door</strong><br>&nbsp;<img src="images/tick.png"> <strong>' . $Room_pdf . '</strong><br>&nbsp;<img src="images/check-box.png"> <strong>Sidelite</strong>';
-                } elseif ($Room == 'Sidelite') { 
+                } elseif ($Room == 'Sidelite') {
                     $Room_pdf = '&nbsp;<img src="images/check-box.png"> <strong>Front Door</strong><br>&nbsp;<img src="images/check-box.png"> <strong>Vest Door</strong><br>&nbsp;<img src="images/tick.png"> <strong>' . $Room_pdf . '</strong>';
                 }
 //            else {
@@ -679,7 +676,7 @@ if ($glass_qty >= 2) {
                 $additional_repairsStr = 'Additional Repairs <u style="font-size: 12px;">' . $additional_repairs . '</u>';
             }
 
- 
+
 
             if ($Top == 1 && $Bottom == 1) {
                 $TopBottomStr = $Top_pdf . '<br>';
@@ -1459,8 +1456,8 @@ if ($glass_qty >= 2) {
 
 //    $pdf->writeHTML('<br><br><br><br><br><hr>', true, false, false, false, '');
     $pdf_name = $jobID . '-' . date('Y-m-d-H-i-s');
-    $pdfpath = "D:/xampp/htdocs/mmglass/JobDetailsPDFs/$pdf_name.pdf";
-    $pdf->Output($pdfpath, 'I');
+    $pdfpath = "/home/bitnami/htdocs/mmglass/create-pdf/$pdf_name.pdf";
+    $pdf->Output($pdfpath, 'F');
      if (file_exists($pdfpath)) {
     $pdf_url = "create-pdf/$pdf_name.pdf"; // Relative URL to access the PDF
     $msg = '<div class="alert alert-success text-center">PDF created successfully! <a href="'.$pdf_url.'" target="_blank">Click here</a> to Download PDF</div>';
